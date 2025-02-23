@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 en Raya - Juego y Estadísticas</title>
+    <link rel="stylesheet" href="Estilos.css">
+</head>
+<body>
+<div class="game">
+    <h1>🎮 Juego: 3 en Raya</h1>
+    <div class="board" id="board">
+        <div class="cell" onclick="makeMove(this, 0)"></div>
+        <div class="cell" onclick="makeMove(this, 1)"></div>
+        <div class="cell" onclick="makeMove(this, 2)"></div>
+        <div class="cell" onclick="makeMove(this, 3)"></div>
+        <div class="cell" onclick="makeMove(this, 4)"></div>
+        <div class="cell" onclick="makeMove(this, 5)"></div>
+        <div class="cell" onclick="makeMove(this, 6)"></div>
+        <div class="cell" onclick="makeMove(this, 7)"></div>
+        <div class="cell" onclick="makeMove(this, 8)"></div>
+    </div>
+    <button onclick="resetGame()">🔄 Reiniciar Juego</button>
+</div>
+
+<div class="stats">
+    <table>
+        <caption>🏆 Estadísticas del Juego</caption>
+        <thead>
+        <tr>
+            <th>Partida #</th>
+            <th>Ganador</th>
+            <th>Fecha</th>
+        </tr>
+        </thead>
+        <tbody id="stats-body"></tbody>
+    </table>
+</div>
+
+<script>
+    let board = ["", "", "", "", "", "", "", "", ""];
+    let currentPlayer = "X";
+    let gameOver = false;
+    let gameCount = 1;
+
+    function makeMove(cell, index) {
+        if (board[index] === "" && !gameOver) {
+            board[index] = currentPlayer;
+            cell.textContent = currentPlayer;
+
+            if (checkWinner()) {
+                setTimeout(() => {
+                    alert("🏆 ¡" + currentPlayer + " ha ganado!");
+                    updateStats(currentPlayer);
+                }, 100);
+                gameOver = true;
+                return;
+            }
+
+            if (!board.includes("")) {
+                setTimeout(() => {
+                    alert("🤝 ¡Empate!");
+                    updateStats("Empate");
+                }, 100);
+                gameOver = true;
+                return;
+            }
+
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+    }
+
+    function checkWinner() {
+        const winningCombos = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+        return winningCombos.some(combo =>
+            board[combo[0]] !== "" &&
+            board[combo[0]] === board[combo[1]] &&
+            board[combo[0]] === board[combo[2]]
+        );
+    }
+
+    function updateStats(winner) {
+        let statsTable = document.getElementById("stats-body");
+        let newRow = statsTable.insertRow();
+        newRow.innerHTML = `<td>${gameCount}</td><td>${winner}</td><td>${new Date().toLocaleDateString()}</td>`;
+        gameCount++;
+    }
+
+    function resetGame() {
+        board = ["", "", "", "", "", "", "", "", ""];
+        currentPlayer = "X";
+        gameOver = false;
+        document.querySelectorAll(".cell").forEach(cell => {
+            cell.textContent = "";
+        });
+    }
+</script>
+</body>
+</html>

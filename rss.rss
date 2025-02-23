@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>3 en Raya - Últimas Partidas</title>
+        <link>http://tudominio.com/3enraya</link>
+        <description>RSS con las últimas partidas de 3 en Raya y sus resultados.</description>
+        <language>es</language>
+
+        <item>
+            <title>Partida #1</title>
+            <description>Ganador: X</description>
+            <pubDate>Sat, 23 Feb 2025 12:00:00 GMT</pubDate>
+            <link>http://tudominio.com/3enraya</link>
+        </item>
+
+        <item>
+            <title>Partida #2</title>
+            <description>Ganador: O</description>
+            <pubDate>Sat, 23 Feb 2025 12:30:00 GMT</pubDate>
+            <link>http://tudominio.com/3enraya</link>
+        </item>
+
+        <item>
+            <title>Partida #3</title>
+            <description>Resultado: Empate</description>
+            <pubDate>Sat, 23 Feb 2025 13:00:00 GMT</pubDate>
+            <link>http://tudominio.com/3enraya</link>
+        </item>
+    </channel>
+</rss>
