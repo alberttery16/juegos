@@ -2,29 +2,29 @@
 <rss version="2.0">
     <channel>
         <title>3 en Raya - Últimas Partidas</title>
-        <link>http://tudominio.com/3enraya</link>
+        <link>https://alberttery-16.github.io/</link>
         <description>RSS con las últimas partidas de 3 en Raya y sus resultados.</description>
         <language>es</language>
 
         <item>
             <title>Partida #1</title>
             <description>Ganador: X</description>
-            <pubDate>Sat, 23 Feb 2025 12:00:00 GMT</pubDate>
-            <link>http://tudominio.com/3enraya</link>
+            <pubDate>Sab, 22 Feb 2025 2:00:00 GMC</pubDate>
+            <link>https://alberttery-16.github.io/</link>
         </item>
 
         <item>
             <title>Partida #2</title>
             <description>Ganador: O</description>
-            <pubDate>Sat, 23 Feb 2025 12:30:00 GMT</pubDate>
-            <link>http://tudominio.com/3enraya</link>
+            <pubDate>Dom, 23 Feb 2025 12:30:00 GMT</pubDate>
+            <link>https://alberttery-16.github.io/</link>
         </item>
 
         <item>
             <title>Partida #3</title>
             <description>Resultado: Empate</description>
-            <pubDate>Sat, 23 Feb 2025 13:00:00 GMT</pubDate>
-            <link>http://tudominio.com/3enraya</link>
+            <pubDate>Lun, 24 Feb 2025 18:00:00 GMC</pubDate>
+            <link>https://alberttery-16.github.io/</link>
         </item>
     </channel>
 </rss>
