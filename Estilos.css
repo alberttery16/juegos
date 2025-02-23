@@ -116,3 +116,21 @@ th {
     background-color: #007bff;
     color: white;
 }
+
+/*Estilos boton rss*/
+
+.rss-link {
+    position: absolute;
+    top: 10px;  /* Ajusta según lo necesites */
+    right: 10px; /* Para la esquina superior derecha */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.rss-link img {
+    width: 50px; /* Ajusta el tamaño del icono */
+    transition: transform 0.3s ease-in-out;
+}
+
+.rss-link img:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+}
