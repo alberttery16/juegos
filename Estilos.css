@@ -1,10 +1,12 @@
 /* Estilos en general de la pagian */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #0ff;
+    font-family: 'Orbitron', sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 /* Estilos del formulario */
@@ -58,22 +60,27 @@ form button:hover {
 
 .board {
     display: grid;
-    grid-template-columns: repeat(3, 60px);
-    gap: 5px;
-    justify-content: center;
-    margin-top: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
 }
 
 .cell {
-    width: 60px;
-    height: 60px;
-    border: 1px solid black;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 2rem;
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff;
+    transition: all 0.3s ease;
     cursor: pointer;
-    background-color: #e0e0e0;
 }
 
 .cell:hover {
@@ -81,17 +88,31 @@ form button:hover {
 }
 
 button {
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #28a745;
-    color: white;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
     border: none;
-    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 0 0 10px #fff;
     cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #218838;
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+@keyframes neon {
+    0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+    50% { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff; }
+    100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+}
+
+h1 {
+    animation: neon 1.5s infinite alternate;
 }
 
 /* Estilos de la tabla de estadísticas */
