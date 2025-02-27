@@ -102,11 +102,16 @@ button {
     border-radius: 5px;
     margin-top: 20px;
     transition: all 0.3s ease;
+    display: block; /* Asegura que ocupe el ancho sin desplazamientos */
+    width: auto; /* Se adapta al contenido */
+    padding: 12px 25px;
+    transition: transform 0.2s ease, background 0.3s ease;
 }
 
 button:hover {
     background: linear-gradient(90deg, #00ffff, #ff00ff);
     box-shadow: 0 0 20px #ff00ff;
+    transform: scale(1.05);
 }
 
 @keyframes neon {
