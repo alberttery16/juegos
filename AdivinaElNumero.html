@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .game-container {
+            background: rgba(0, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background: cyan;
+            color: black;
+            cursor: pointer;
+        }
+        button:hover {
+            background: darkcyan;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎯 Adivina el Número</h1>
+    <div class="game-container">
+        <p>Introduce un número entre 1 y 100:</p>
+        <input type="number" id="guess" min="1" max="100">
+        <button onclick="checkGuess()">Adivinar</button>
+        <p id="message"></p>
+        <button onclick="resetGame()">🔄 Reiniciar</button>
+    </div>
+
+    <script>
+        let numberToGuess = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            let userGuess = parseInt(document.getElementById('guess').value);
+            attempts++;
+            if (userGuess < numberToGuess) {
+                document.getElementById('message').textContent = "📉 Demasiado bajo. Intenta otra vez.";
+            } else if (userGuess > numberToGuess) {
+                document.getElementById('message').textContent = "📈 Demasiado alto. Intenta otra vez.";
+            } else {
+                document.getElementById('message').textContent = `🎉 ¡Correcto! Lo lograste en ${attempts} intentos.`;
+            }
+        }
+
+        function resetGame() {
+            numberToGuess = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('message').textContent = "";
+            document.getElementById('guess').value = "";
+        }
+    </script>
+
+</body>
+</html>
