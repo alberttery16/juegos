@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Memoria</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            background: black;
+            color: white;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card {
+            width: 80px;
+            height: 80px;
+            background: cyan;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧠 Juego de Memoria</h1>
+    <div class="grid"></div>
+
+    <script>
+        const emojis = ["🍎", "🍌", "🍇", "🍉", "🍒", "🍍", "🥑", "🥕"];
+        let cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+        let grid = document.querySelector(".grid");
+        let firstCard, secondCard;
+        let lockBoard = false;
+
+        cards.forEach(emoji => {
+            let card = document.createElement("div");
+            card.classList.add("card");
+            card.dataset.emoji = emoji;
+            card.addEventListener("click", flipCard);
+            grid.appendChild(card);
+        });
+
+        function flipCard() {
+            if (lockBoard || this === firstCard) return;
+            this.textContent = this.dataset.emoji;
+
+            if (!firstCard) {
+                firstCard = this;
+            } else {
+                secondCard = this;
+                lockBoard = true;
+
+                if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+                    firstCard = secondCard = null;
+                    lockBoard = false;
+                } else {
+                    setTimeout(() => {
+                        firstCard.textContent = "";
+                        secondCard.textContent = "";
+                        firstCard = secondCard = null;
+                        lockBoard = false;
+                    }, 1000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
