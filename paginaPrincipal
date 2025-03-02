@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .menu {
+            margin-top: 50px;
+        }
+        .menu a {
+            display: block;
+            margin: 10px auto;
+            padding: 15px;
+            width: 200px;
+            background-color: #008cba;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .menu a:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido a la Plataforma de Juegos</h1>
+    <div class="menu">
+        <a href="Miau.html">Jugar 3 en Raya</a>
+        <a href="#">Otro Juego 1</a>
+        <a href="#">Otro Juego 2</a>
+        <a href="#">Configuración</a>
+        <a href="#">Salir</a>
+    </div>
+</body>
+</html>
