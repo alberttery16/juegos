@@ -17,26 +17,44 @@
             margin: auto;
             border: 2px solid cyan;
         }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: cyan;
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1>🐍 Juego de la Serpiente</h1>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <button id="restartBtn" onclick="resetGame()">🔄 Reiniciar</button>
+    
     <script>
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
+        const restartBtn = document.getElementById("restartBtn");
 
-        let snake = [{x: 200, y: 200}];
-        let direction = "RIGHT";
-        let food = {x: Math.floor(Math.random() * 20) * 20, y: Math.floor(Math.random() * 20) * 20};
+        let snake, direction, food, gameInterval;
+
+        function initGame() {
+            snake = [{x: 200, y: 200}];
+            direction = "RIGHT";
+            food = {x: Math.floor(Math.random() * 20) * 20, y: Math.floor(Math.random() * 20) * 20};
+            restartBtn.style.display = "none";
+            gameInterval = setInterval(draw, 150);
+        }
 
         function draw() {
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             ctx.fillStyle = "red";
             ctx.fillRect(food.x, food.y, 20, 20);
-            
+
             ctx.fillStyle = "cyan";
             snake.forEach(part => ctx.fillRect(part.x, part.y, 20, 20));
 
@@ -54,12 +72,17 @@
 
             if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height ||
                 snake.some(part => part.x === head.x && part.y === head.y)) {
+                clearInterval(gameInterval);
                 alert("💀 ¡Game Over!");
-                snake = [{x: 200, y: 200}];
-                direction = "RIGHT";
+                restartBtn.style.display = "block";
+                return;
             }
 
             snake.unshift(head);
+        }
+
+        function resetGame() {
+            initGame();
         }
 
         document.addEventListener("keydown", event => {
@@ -69,7 +92,7 @@
             if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
         });
 
-        setInterval(draw, 150);
+        initGame();
     </script>
 </body>
 </html>
