@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Memoria</title>
+    <title>Juego de Memoria Avanzado</title>
     <style>
         body {
-            font-family: 'Press Start 2P', cursive;
             text-align: center;
-            background: black;
+            background: linear-gradient(135deg, #1b1b2f, #16213e);
             color: white;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 80px);
-            gap: 10px;
+        h1 {
+            text-shadow: 0 0 10px cyan;
+        }
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            margin-top: 20px;
+        }
+        .board {
+            display: grid;
+            gap: 10px;
             margin-top: 20px;
         }
         .card {
@@ -25,72 +35,162 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px cyan;
             cursor: pointer;
-            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .card.matched {
+            background: lime;
+            box-shadow: 0 0 10px lime;
+        }
+        .card.flipped {
+            background: white;
+            transform: rotateY(180deg);
+        }
+        .controls {
+            margin-top: 20px;
         }
         button {
-            margin-top: 20px;
             padding: 10px;
-            font-size: 16px;
+            font-size: 14px;
             background-color: cyan;
             border: none;
             cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+        }
+        #timer {
+            font-size: 20px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>🧠 Juego de Memoria</h1>
-    <button id="startGame">Iniciar Juego</button>
-    <div class="grid"></div>
+    <h1>🃏 Juego de Memoria</h1>
+    <div class="controls">
+        <button onclick="startGame(4)">Fácil (4x4)</button>
+        <button onclick="startGame(6)">Normal (6x6)</button>
+        <button onclick="startGame(8)">Difícil (8x8)</button>
+        <button onclick="showHint()">👀 Pista</button>
+        <button onclick="resetGame()">🔄 Reiniciar</button>
+    </div>
+
+    <p id="timer">⏳ Tiempo: 0s</p>
+
+    <div class="game-container">
+        <div class="board" id="board"></div>
+    </div>
 
     <script>
-        const emojis = ["🍎", "🍌", "🍇", "🍉", "🍒", "🍍", "🥑", "🥕"];
-        let cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
-        let grid = document.querySelector(".grid");
-        let firstCard, secondCard, lockBoard = false;
-        let startButton = document.getElementById("startGame");
+        let boardSize, board, cards, firstCard, secondCard, lockBoard, timer, time, matchedPairs;
+        let bestTime = {4: Infinity, 6: Infinity, 8: Infinity};
 
-        cards.forEach(emoji => {
-            let card = document.createElement("div");
-            card.classList.add("card");
-            card.dataset.emoji = emoji;
-            card.textContent = emoji; // Mostrar todas las cartas antes de empezar
-            grid.appendChild(card);
-        });
+        const symbols = ["🐱", "🐶", "🐼", "🐵", "🦁", "🐸", "🦄", "🐯", "🐙", "🐷", "🦊", "🐻", "🐤", "🐮", "🐭", "🐨"];
 
-        function startGame() {
-            grid.childNodes.forEach(card => card.textContent = ""); // Oculta las cartas
-            grid.childNodes.forEach(card => card.addEventListener("click", flipCard));
-            startButton.style.display = "none";
+        function startGame(size) {
+            boardSize = size;
+            board = document.getElementById("board");
+            board.innerHTML = "";
+            board.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
+            time = 0;
+            matchedPairs = 0;
+            lockBoard = false;
+            firstCard = secondCard = null;
+            document.getElementById("timer").textContent = "⏳ Tiempo: 0s";
+            
+            let selectedSymbols = symbols.slice(0, (boardSize * boardSize) / 2);
+            let cardValues = [...selectedSymbols, ...selectedSymbols];
+            cardValues.sort(() => Math.random() - 0.5);
+
+            cards = cardValues.map((symbol, index) => {
+                let card = document.createElement("div");
+                card.classList.add("card");
+                card.dataset.symbol = symbol;
+                card.dataset.index = index;
+                card.addEventListener("click", flipCard);
+                board.appendChild(card);
+                return card;
+            });
+
+            clearInterval(timer);
+            timer = setInterval(() => {
+                time++;
+                document.getElementById("timer").textContent = `⏳ Tiempo: ${time}s`;
+            }, 1000);
         }
 
         function flipCard() {
-            if (lockBoard || this === firstCard) return;
-            this.textContent = this.dataset.emoji;
+            if (lockBoard || this.classList.contains("flipped") || this.classList.contains("matched")) return;
+            
+            this.classList.add("flipped");
+            this.textContent = this.dataset.symbol;
 
             if (!firstCard) {
                 firstCard = this;
-            } else {
-                secondCard = this;
-                lockBoard = true;
+                return;
+            }
 
-                if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
-                    firstCard = secondCard = null;
-                    lockBoard = false;
-                } else {
-                    setTimeout(() => {
-                        firstCard.textContent = "";
-                        secondCard.textContent = "";
-                        firstCard = secondCard = null;
-                        lockBoard = false;
-                    }, 1000);
+            secondCard = this;
+            lockBoard = true;
+
+            if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+                firstCard.classList.add("matched");
+                secondCard.classList.add("matched");
+                matchedPairs++;
+                resetCards();
+                
+                if (matchedPairs === (boardSize * boardSize) / 2) {
+                    clearInterval(timer);
+                    checkBestTime();
+                    alert(`🎉 ¡Ganaste! Tiempo: ${time}s`);
                 }
+            } else {
+                setTimeout(() => {
+                    firstCard.classList.remove("flipped");
+                    secondCard.classList.remove("flipped");
+                    firstCard.textContent = "";
+                    secondCard.textContent = "";
+                    resetCards();
+                }, 1000);
             }
         }
 
-        startButton.addEventListener("click", startGame);
+        function resetCards() {
+            [firstCard, secondCard] = [null, null];
+            lockBoard = false;
+        }
+
+        function resetGame() {
+            startGame(boardSize);
+        }
+
+        function showHint() {
+            lockBoard = true;
+            cards.forEach(card => {
+                card.classList.add("flipped");
+                card.textContent = card.dataset.symbol;
+            });
+
+            setTimeout(() => {
+                cards.forEach(card => {
+                    if (!card.classList.contains("matched")) {
+                        card.classList.remove("flipped");
+                        card.textContent = "";
+                    }
+                });
+                lockBoard = false;
+            }, 1500);
+        }
+
+        function checkBestTime() {
+            if (time < bestTime[boardSize]) {
+                bestTime[boardSize] = time;
+                alert(`🥇 ¡Nuevo récord en dificultad ${boardSize}x${boardSize}! Tiempo: ${time}s`);
+            }
+        }
     </script>
 </body>
 </html>
-
