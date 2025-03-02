@@ -27,10 +27,12 @@
             display: grid;
             gap: 10px;
             margin-top: 20px;
+            width: 90%;
+            max-width: 600px;
         }
         .card {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background: cyan;
             display: flex;
             align-items: center;
@@ -41,7 +43,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px cyan;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, background 0.3s;
         }
         .card.matched {
             background: lime;
@@ -61,6 +63,7 @@
             border: none;
             cursor: pointer;
             font-family: 'Press Start 2P', cursive;
+            margin: 5px;
         }
         #timer {
             font-size: 20px;
@@ -88,7 +91,7 @@
         let boardSize, board, cards, firstCard, secondCard, lockBoard, timer, time, matchedPairs;
         let bestTime = {4: Infinity, 6: Infinity, 8: Infinity};
 
-        const symbols = ["🐱", "🐶", "🐼", "🐵", "🦁", "🐸", "🦄", "🐯", "🐙", "🐷", "🦊", "🐻", "🐤", "🐮", "🐭", "🐨"];
+        const symbols = ["🐱", "🐶", "🐼", "🐵", "🦁", "🐸", "🦄", "🐯", "🐙", "🐷", "🦊", "🐻", "🐤", "🐮", "🐭", "🐨", "🐰", "🐢", "🐍", "🐬", "🐊", "🐎", "🦅", "🦉", "🐪", "🐘", "🐳", "🦖", "🐉", "🦇", "🦔", "🦜"];
 
         function startGame(size) {
             boardSize = size;
@@ -100,8 +103,9 @@
             lockBoard = false;
             firstCard = secondCard = null;
             document.getElementById("timer").textContent = "⏳ Tiempo: 0s";
-            
-            let selectedSymbols = symbols.slice(0, (boardSize * boardSize) / 2);
+
+            let totalPairs = (boardSize * boardSize) / 2;
+            let selectedSymbols = symbols.slice(0, totalPairs);
             let cardValues = [...selectedSymbols, ...selectedSymbols];
             cardValues.sort(() => Math.random() - 0.5);
 
