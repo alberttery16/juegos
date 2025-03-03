@@ -16,24 +16,15 @@
             display: block;
             margin: auto;
         }
-        button {
-            padding: 10px 20px;
-            background: #0f0;
-            border: none;
-            color: black;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0c0;
+        p {
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <h1>🛡 Tower Defense 🏹</h1>
+    <h1>🛡 Tower Defense Mejorado 🏹</h1>
     <p>Dinero: <span id="money">100</span> 💰</p>
     <canvas id="gameCanvas"></canvas>
-    <button id="addTower">Colocar Torre (50💰)</button>
 
     <script>
         const canvas = document.getElementById("gameCanvas");
@@ -45,8 +36,8 @@
         let enemies = [];
         let towers = [];
         let bullets = [];
-        let enemySpeed = 1;
-        let enemyInterval = 100;
+        let enemySpeed = 0.5; // Enemigos más lentos
+        let enemyInterval = 150;
         let frameCount = 0;
 
         document.getElementById("money").innerText = money;
@@ -103,6 +94,11 @@
                 this.x += this.speed;
                 if (this.x >= this.target.x) {
                     this.target.hp--;
+                    if (this.target.hp <= 0) {
+                        enemies.splice(enemies.indexOf(this.target), 1);
+                        money += 10; // Recompensa por matar enemigos
+                        document.getElementById("money").innerText = money;
+                    }
                     bullets.splice(bullets.indexOf(this), 1);
                 }
             }
@@ -113,9 +109,13 @@
             }
         }
 
-        document.getElementById("addTower").addEventListener("click", function() {
+        canvas.addEventListener("click", function(event) {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
             if (money >= 50) {
-                towers.push(new Tower(500, 150));
+                towers.push(new Tower(x - 20, y - 20));
                 money -= 50;
                 document.getElementById("money").innerText = money;
             }
