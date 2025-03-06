@@ -1,0 +1,208 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Esquivar</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+        }
+        canvas {
+            background-color: black;
+            border: 2px solid white;
+        }
+        .info {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Esquivar</h1>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <p>Usa las flechas izquierda y derecha para mover el jugador.</p>
+    
+    <div class="info">
+        <p>Monedas: <span id="coinCount">0</span></p>
+        <p>Velocidad: <span id="speedLevel">15</span></p>
+        <p>Escudo: <span id="shieldStatus">Desactivado</span></p>
+    </div>
+
+    <button id="speedUpgradeButton" disabled>Mejorar Velocidad (100 monedas)</button>
+    <button id="shieldButton" disabled>Activar Escudo (500 monedas)</button>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const player = { x: 380, y: 550, width: 40, height: 40, speed: 15, shieldActive: false, shieldDuration: 0 };
+        let obstacles = [];
+        let coins = 0;
+        let score = 0;
+        let gameOver = false;
+        let fallingObjects = [];
+
+        const initialFallingSpeed = 2;  // Velocidad inicial más lenta de los objetos
+
+        // Actualización de la UI
+        function updateUI() {
+            document.getElementById("coinCount").textContent = coins;
+            document.getElementById("speedLevel").textContent = player.speed;
+            document.getElementById("shieldStatus").textContent = player.shieldActive ? "Activado" : "Desactivado";
+
+            // Habilitar/Deshabilitar botones según las monedas
+            document.getElementById("speedUpgradeButton").disabled = coins < 100;
+            document.getElementById("shieldButton").disabled = coins < 500;
+        }
+
+        // Dibujar jugador
+        function drawPlayer() {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            if (player.shieldActive) {
+                ctx.strokeStyle = "cyan";
+                ctx.lineWidth = 4;
+                ctx.strokeRect(player.x - 4, player.y - 4, player.width + 8, player.height + 8); // Escudo visual
+            }
+        }
+
+        // Crear objetos que caen (monedas, potenciadores, obstáculos, objeto rosa)
+        function createFallingObject() {
+            const objectType = Math.random() < 0.6 ? "coin" :   // 60% de probabilidad de que sea un objeto inofensivo
+                               (Math.random() < 0.5 ? "speed" :   // 20% de probabilidad de un potenciador de velocidad
+                               (player.speed >= 30 ? "pink" : "obstacle")); // 20% de probabilidad de que sea un enemigo (rojo o rosa)
+            const x = Math.random() * (canvas.width - 40);
+            const speed = objectType === "coin" ? initialFallingSpeed :
+                          (objectType === "speed" ? initialFallingSpeed : 
+                          (objectType === "pink" ? initialFallingSpeed + 1.5 : initialFallingSpeed + 1));  // Objetos rosas caen más rápido
+            const value = objectType === "coin" ? 10 : 
+                          (objectType === "speed" ? 0 : 
+                          (objectType === "pink" ? -1 : -1)); // El objeto rosa es peligroso, no da monedas
+
+            fallingObjects.push({ x, y: 0, width: 40, height: 40, type: objectType, speed, value });
+        }
+
+        // Mover los objetos que caen
+        function moveFallingObjects() {
+            fallingObjects.forEach(object => object.y += object.speed);
+            fallingObjects = fallingObjects.filter(object => object.y < canvas.height);
+        }
+
+        // Dibujar los objetos que caen
+        function drawFallingObjects() {
+            fallingObjects.forEach(object => {
+                if (object.type === "coin") {
+                    ctx.fillStyle = "gold";
+                } else if (object.type === "speed") {
+                    ctx.fillStyle = "green";
+                } else if (object.type === "pink") {
+                    ctx.fillStyle = "pink";
+                } else if (object.type === "obstacle") {
+                    ctx.fillStyle = "red";
+                }
+                ctx.fillRect(object.x, object.y, object.width, object.height);
+            });
+        }
+
+        // Comprobar colisiones con el jugador
+        function checkCollision() {
+            fallingObjects.forEach(object => {
+                if (
+                    player.x < object.x + object.width &&
+                    player.x + player.width > object.x &&
+                    player.y < object.y + object.height &&
+                    player.y + player.height > object.y
+                ) {
+                    if (object.type === "coin") {
+                        coins += 10;
+                    } else if (object.type === "speed") {
+                        player.speed += 1;
+                    } else if (object.type === "pink" && !player.shieldActive) {
+                        gameOver = true;  // El rosa mata al jugador si no tiene escudo
+                    } else if (object.type === "pink" && player.shieldActive) {
+                        player.shieldActive = false;  // El escudo se desactiva al tocar un rosa
+                    } else if (object.type === "obstacle" && !player.shieldActive) {
+                        gameOver = true;  // El rojo mata al jugador si no tiene escudo
+                    } else if (object.type === "obstacle" && player.shieldActive) {
+                        player.shieldActive = false;  // El escudo se desactiva al tocar un rojo
+                    }
+                    fallingObjects = fallingObjects.filter(f => f !== object);
+                }
+            });
+        }
+
+        // Bucle principal del juego
+        function gameLoop() {
+            if (gameOver) {
+                alert("¡Game Over! Puntuación: " + score);
+                document.location.reload();
+                return;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+            drawFallingObjects();
+            moveFallingObjects();
+            checkCollision();
+
+            score++;
+            updateUI();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Función para mover el jugador
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft" && player.x > 0) {
+                player.x -= player.speed;
+            }
+            if (event.key === "ArrowRight" && player.x < canvas.width - player.width) {
+                player.x += player.speed;
+            }
+        });
+
+        // Función para mejorar habilidades del jugador (Velocidad)
+        document.getElementById("speedUpgradeButton").addEventListener("click", () => {
+            if (coins >= 100) {
+                player.speed += 5;
+                coins -= 100;
+                updateUI();
+            }
+        });
+
+        // Función para activar escudo
+        document.getElementById("shieldButton").addEventListener("click", () => {
+            if (coins >= 500 && !player.shieldActive) {
+                player.shieldActive = true;
+                coins -= 500;
+                updateUI();
+            }
+        });
+
+        // Intervalo para crear objetos con dificultad creciente
+        let objectCreationInterval = 1500;
+        setInterval(() => {
+            createFallingObject();
+            objectCreationInterval = Math.max(500, objectCreationInterval - 30); // Reduce el intervalo de creación de objetos a medida que pasa el tiempo
+        }, objectCreationInterval);
+
+        gameLoop();
+
+    </script>
+</body>
+</html>
