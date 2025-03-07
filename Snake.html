@@ -55,17 +55,12 @@
         const ctx = canvas.getContext("2d");
         const restartBtn = document.getElementById("restartBtn");
 
-        let snake, direction, food, obstacles, gameInterval, score, speed, maxScore;
+        let snake, direction, food, obstacles, gameInterval, score, speed, maxScore, obstacleInterval;
         let gameRunning = false;
 
         const gridSize = 20;
         const numRows = canvas.width / gridSize;
         const numCols = canvas.height / gridSize;
-
-        const sounds = {
-            eat: new Audio("https://www.fesliyanstudios.com/play-mp3/438"),
-            crash: new Audio("https://www.fesliyanstudios.com/play-mp3/439")
-        };
 
         function getRandomPosition() {
             return {
@@ -92,7 +87,14 @@
             score = 0;
             speed = difficulty === "easy" ? 200 : difficulty === "normal" ? 150 : 100;
             obstacles = generateObstacles(difficulty === "hard" ? 10 : difficulty === "normal" ? 5 : 0);
-
+            
+            if (difficulty === "normal" || difficulty === "hard") {
+                const intervalTime = difficulty === "normal" ? 10000 : 5000;
+                obstacleInterval = setInterval(() => {
+                    obstacles = generateObstacles(difficulty === "hard" ? 10 : 5);
+                }, intervalTime);
+            }
+            
             maxScore = localStorage.getItem("maxScore") || 0;
             restartBtn.classList.add("hidden");
 
@@ -121,7 +123,6 @@
             if (head.x === food.x && head.y === food.y) {
                 food = getRandomPosition();
                 score++;
-                sounds.eat.play();
             } else {
                 snake.pop();
             }
@@ -131,8 +132,8 @@
                 obstacles.some(obs => obs.x === head.x && obs.y === head.y)) {
                 
                 clearInterval(gameInterval);
+                clearInterval(obstacleInterval);
                 gameRunning = false;
-                sounds.crash.play();
                 restartBtn.classList.remove("hidden");
 
                 if (score > maxScore) {
