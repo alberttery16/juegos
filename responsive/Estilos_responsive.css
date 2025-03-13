@@ -166,6 +166,7 @@ th {
 /*Estilos Resoponsive*/
 @media (min-width: 780px) {
     form {
+        margin: auto;
          width: 200%;
          max-width: 1200px;
        }
