@@ -1,16 +1,4 @@
 /* Estilos en general de la pagina */
-@media screen and (min-width: 780px) {
-.full-width-img {
-margin: auto;
-width: 90%;
-}
-
-@media screen and (max-width: 780px) {
-.full-width-img {
-margin: auto;
-width: 100%;
-}
-
 body {
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     color: #0ff;
@@ -165,20 +153,15 @@ th {
     color: white;
 }
 
-/*Estilos boton rss*/
-
-.rss-link {
-    position: absolute;
-    top: 10px;  /* Ajusta según lo necesites */
-    right: 10px; /* Para la esquina superior derecha */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+/*Estilos Resoponsive*/
+@media screen and (min-width: 780px) {
+.full-width-img {
+margin: auto;
+width: 90%;
 }
 
-.rss-link img {
-    width: 50px; /* Ajusta el tamaño del icono */
-    transition: transform 0.3s ease-in-out;
-}
-
-.rss-link img:hover {
-    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+@media screen and (max-width: 780px) {
+.full-width-img {
+margin: auto;
+width: 100%;
 }
