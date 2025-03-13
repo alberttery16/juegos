@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 20px;
+            text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+        }
+
+        .menu {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px 30px;
+            width: 80%;
+            max-width: 300px;
+            background: rgba(0, 255, 255, 0.3);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease-in-out;
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+
+        .menu a:hover {
+            background: rgba(0, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        .game-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            background-size: cover;
+            background-position: center;
+            color: black;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .menu a {
+                width: 90%;
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido al menú de Juegos</h1>
+    <div class="menu">
+        <a href="3enRaya.html" class="game-link" style="background-image: url('3raya.webp');">3 en Raya</a>
+        <a href="AdivinaElNumero.html">Adivina el Número</a>
+        <a href="Snake.html">Snake</a>
+        <a href="Memoria.html">Memoria</a>
+        <a href="Password.html">Contraseña</a>
+        <a href="Esquivar.html">Esquivar</a>
+        <a href="index.html">Salir</a>
+    </div>
+</body>
+</html>
