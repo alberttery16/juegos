@@ -23,12 +23,6 @@ body {
     height: 100vh;
 }
 
-.container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-}
-
 form {
     background-color: white;
     padding: 20px;
