@@ -164,10 +164,11 @@ th {
 }
 
 /*Estilos Resoponsive*/
-@media screen and (min-width: 780px) {
-.container {
-margin: auto;
-width: 90%;
+@media (min-width: 780px) {
+    form {
+         width: 75%;
+         max-width: 1200px;
+       }
 }
 
 @media screen and (max-width: 780px) {
