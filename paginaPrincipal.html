@@ -1,66 +1,78 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
-   <style>
-        body {
-            font-family: 'Press Start 2P', cursive;
-            text-align: center;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        .menu {
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .menu a {
-            display: block;
-            padding: 15px 30px;
-            width: 250px;
-            background: rgba(0, 255, 255, 0.3);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            transition: all 0.3s ease-in-out;
-            backdrop-filter: blur(5px);
-        }
-        .menu a:hover {
-            background: rgba(0, 255, 255, 0.6);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-            transform: scale(1.1);
-        }
-        h1 {
-            margin-top: 50px;
-            font-size: 24px;
-            text-shadow: 0 0 5px cyan, 0 0 10px cyan;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>HUB_PRINCIPAL // COM_GAMES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Estilos.css">
 </head>
-<body>
-    <h1>Bienvenido al menú de Juegos</h1>
-    <div class="menu">
-    <a href="3enRaya.html" 
-       style="display: inline-block; background-image: url('3raya.webp'); background-size: cover; background-position: center; text-align: center; line-height: 60px; color: black; font-size: 18px; text-decoration: none; border-radius: 8px; transition: transform 0.3s;">
-        3 en Raya
-    </a>
-        <a href="AdivinaElNumero.html">Adivina el Numero</a>
-        <a href="Snake.html">Snake</a>
-        <a href="Memoria.html">Memoria</a>
-        <a href="Password.html">Contraseña</a>
-        <a href="Esquivar.html">Esquivar</a>
-        <a href="index.html">Salir</a>
+<body class="arcade-hub-body">
+    <div class="cyber-scanline"></div>
+    <header class="hub-header">
+        <h1 class="glitch-text" data-text="GAME_DATABANKS">GAME_DATABANKS</h1>
+        <p class="subtitle">> Selecciona un cartucho virtual para iniciar simulación</p>
+    </header>
+
+    <main class="games-grid">
+        <!-- GAME 1 -->
+        <a href="3enRaya.html" class="game-card" data-neon="magenta">
+            <div class="card-image" style="background-image: url('3raya.webp');"></div>
+            <div class="card-content">
+                <div class="game-id">SYS_01</div>
+                <h3>3 EN RAYA</h3>
+            </div>
+        </a>
+
+        <!-- GAME 2 -->
+        <a href="AdivinaElNumero.html" class="game-card" data-neon="cyan">
+            <div class="card-image logic-bg"></div>
+            <div class="card-content">
+                <div class="game-id">SYS_02</div>
+                <h3>EL NÚMERO</h3>
+            </div>
+        </a>
+
+        <!-- GAME 3 -->
+        <a href="Snake.html" class="game-card" data-neon="green">
+            <div class="card-image snake-bg"></div>
+            <div class="card-content">
+                <div class="game-id">SYS_03</div>
+                <h3>SNAKE</h3>
+            </div>
+        </a>
+
+        <!-- GAME 4 -->
+        <a href="Memoria.html" class="game-card" data-neon="pink">
+            <div class="card-image memory-bg"></div>
+            <div class="card-content">
+                <div class="game-id">SYS_04</div>
+                <h3>MEMORIA</h3>
+            </div>
+        </a>
+
+        <!-- GAME 5 -->
+        <a href="Password.html" class="game-card" data-neon="orange">
+            <div class="card-image pass-bg"></div>
+            <div class="card-content">
+                <div class="game-id">SYS_05</div>
+                <h3>CONTRASEÑA</h3>
+            </div>
+        </a>
+
+        <!-- GAME 6 -->
+        <a href="Esquivar.html" class="game-card" data-neon="yellow">
+            <div class="card-image dodge-bg"></div>
+            <div class="card-content">
+                <div class="game-id">SYS_06</div>
+                <h3>ESQUIVAR</h3>
+            </div>
+        </a>
+    </main>
+
+    <div class="hub-actions">
+        <a href="index.html" class="cyber-btn exit-btn">[ LOGOUT_SYSTEM ]</a>
     </div>
+
 </body>
 </html>
