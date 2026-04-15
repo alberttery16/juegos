@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARCADE_LOGIN // COM_GAMES</title>
-    <!-- Add neon fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>Acceder - Juegos</title>
+    <!-- Modern clean font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Estilos.css">
 </head>
-<body class="arcade-login-body">
-    <div class="login-wrapper">
-        <div class="cyber-scanline"></div>
-        <div class="login-box cyber-ui">
-            <h1 class="glitch-text" data-text="SYS_AUTH">SYS_AUTH</h1>
-            <p class="subtitle">> Ingrese credenciales de acceso</p>
-
-            <form action="paginaPrincipal.html" method="get" class="cyber-form">
-                <div class="input-group">
-                    <label for="nombre">USER_ID</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="_identificación" required autocomplete="off">
-                </div>
-
-                <div class="input-group">
-                    <label for="correo">EMAIL_UPLINK</label>
-                    <input type="email" id="correo" name="correo" placeholder="_comlink" required autocomplete="off">
-                </div>
-
-                <div class="input-group">
-                    <label for="contraseña">PASSWORD</label>
-                    <input type="password" id="contraseña" name="contraseña" placeholder="_" required autocomplete="off">
-                </div>
-
-                <button type="submit" class="cyber-btn">[ AUTHENTICATE ]</button>
-                
-                <footer class="login-footer">
-                    <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Ver Política de Privacidad del Sistema</a>
-                </footer>
-            </form>
+<body class="modern-body modern-login-bg">
+    <div class="modern-login-container">
+        <div class="login-header">
+            <h1 class="modern-title">Bienvenido</h1>
+            <p class="modern-subtitle">Inicia sesión en tu cuenta para acceder a la biblioteca de juegos.</p>
         </div>
+
+        <form action="paginaPrincipal.html" method="get" class="modern-form">
+            <div class="modern-input-group">
+                <label for="nombre">Nombre de usuario</label>
+                <input type="text" id="nombre" name="nombre" placeholder="johndoe" required autocomplete="off">
+            </div>
+
+            <div class="modern-input-group">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="john@example.com" required autocomplete="off">
+            </div>
+
+            <div class="modern-input-group">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" id="contraseña" name="contraseña" placeholder="••••••••" required autocomplete="off">
+            </div>
+
+            <button type="submit" class="modern-btn primary-btn">Iniciar Sesión</button>
+            
+            <footer class="modern-login-footer">
+                <p>Al continuar, aceptas nuestra <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>.</p>
+            </footer>
+        </form>
     </div>
 </body>
 </html>

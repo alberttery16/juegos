@@ -3,76 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUB_PRINCIPAL // COM_GAMES</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>Juegos - Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Estilos.css">
 </head>
-<body class="arcade-hub-body">
-    <div class="cyber-scanline"></div>
-    <header class="hub-header">
-        <h1 class="glitch-text" data-text="GAME_DATABANKS">GAME_DATABANKS</h1>
-        <p class="subtitle">> Selecciona un cartucho virtual para iniciar simulación</p>
-    </header>
+<body class="modern-body modern-hub-bg">
+    <nav class="modern-nav">
+        <div class="nav-logo">Mi Biblioteca</div>
+        <a href="index.html" class="nav-logout">Cerrar Sesión</a>
+    </nav>
 
-    <main class="games-grid">
-        <!-- GAME 1 -->
-        <a href="3enRaya.html" class="game-card" data-neon="magenta">
-            <div class="card-image" style="background-image: url('3raya.webp');"></div>
-            <div class="card-content">
-                <div class="game-id">SYS_01</div>
-                <h3>3 EN RAYA</h3>
-            </div>
-        </a>
+    <main class="modern-library">
+        <header class="library-header">
+            <h2>Nuestros Juegos</h2>
+            <p>Selecciona un juego para empezar a jugar al instante.</p>
+        </header>
 
-        <!-- GAME 2 -->
-        <a href="AdivinaElNumero.html" class="game-card" data-neon="cyan">
-            <div class="card-image logic-bg"></div>
-            <div class="card-content">
-                <div class="game-id">SYS_02</div>
-                <h3>EL NÚMERO</h3>
-            </div>
-        </a>
+        <div class="modern-grid">
+            <!-- GAME 1 -->
+            <a href="3enRaya.html" class="modern-card">
+                <div class="m-card-image" style="background-image: url('3raya.webp');"></div>
+                <div class="m-card-content">
+                    <h3>3 en Raya</h3>
+                    <p>Clásico juego de estrategia pura.</p>
+                </div>
+            </a>
 
-        <!-- GAME 3 -->
-        <a href="Snake.html" class="game-card" data-neon="green">
-            <div class="card-image snake-bg"></div>
-            <div class="card-content">
-                <div class="game-id">SYS_03</div>
-                <h3>SNAKE</h3>
-            </div>
-        </a>
+            <!-- GAME 2 -->
+            <a href="AdivinaElNumero.html" class="modern-card">
+                <div class="m-card-image bg-gradient-blue"></div>
+                <div class="m-card-content">
+                    <h3>Adivina el Número</h3>
+                    <p>Pon a prueba tu lógica y suerte.</p>
+                </div>
+            </a>
 
-        <!-- GAME 4 -->
-        <a href="Memoria.html" class="game-card" data-neon="pink">
-            <div class="card-image memory-bg"></div>
-            <div class="card-content">
-                <div class="game-id">SYS_04</div>
-                <h3>MEMORIA</h3>
-            </div>
-        </a>
+            <!-- GAME 3 -->
+            <a href="Snake.html" class="modern-card">
+                <div class="m-card-image bg-gradient-green"></div>
+                <div class="m-card-content">
+                    <h3>Snake</h3>
+                    <p>Recoge la comida y crece sin chocar.</p>
+                </div>
+            </a>
 
-        <!-- GAME 5 -->
-        <a href="Password.html" class="game-card" data-neon="orange">
-            <div class="card-image pass-bg"></div>
-            <div class="card-content">
-                <div class="game-id">SYS_05</div>
-                <h3>CONTRASEÑA</h3>
-            </div>
-        </a>
+            <!-- GAME 4 -->
+            <a href="Memoria.html" class="modern-card">
+                <div class="m-card-image bg-gradient-purple"></div>
+                <div class="m-card-content">
+                    <h3>Memoria</h3>
+                    <p>Encuentra todas las parejas ocultas.</p>
+                </div>
+            </a>
 
-        <!-- GAME 6 -->
-        <a href="Esquivar.html" class="game-card" data-neon="yellow">
-            <div class="card-image dodge-bg"></div>
-            <div class="card-content">
-                <div class="game-id">SYS_06</div>
-                <h3>ESQUIVAR</h3>
-            </div>
-        </a>
+            <!-- GAME 5 -->
+            <a href="Password.html" class="modern-card">
+                <div class="m-card-image bg-gradient-orange"></div>
+                <div class="m-card-content">
+                    <h3>Generador</h3>
+                    <p>Crea contraseñas robustas al instante.</p>
+                </div>
+            </a>
+
+            <!-- GAME 6 -->
+            <a href="Esquivar.html" class="modern-card">
+                <div class="m-card-image bg-gradient-red"></div>
+                <div class="m-card-content">
+                    <h3>Esquivar</h3>
+                    <p>Evita los obstáculos el mayor tiempo posible.</p>
+                </div>
+            </a>
+        </div>
     </main>
-
-    <div class="hub-actions">
-        <a href="index.html" class="cyber-btn exit-btn">[ LOGOUT_SYSTEM ]</a>
-    </div>
 
 </body>
 </html>

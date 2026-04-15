@@ -1,231 +1,214 @@
 :root {
-    --bg-dark: #050505;
-    --neon-cyan: #00f3ff;
-    --neon-pink: #ff007f;
-    --neon-magenta: #b000ff;
-    --neon-green: #00ff66;
-    --neon-orange: #ff5500;
-    --neon-yellow: #ffff00;
-    --font-head: 'Orbitron', sans-serif;
-    --font-body: 'Rajdhani', sans-serif;
+    --bg-light: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --primary-blue: #3b82f6;
+    --primary-hover: #2563eb;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
 }
 
-/* GENERAL (Games fallbacks) */
-body {
-    background: var(--bg-dark);
-    color: #fff;
-    font-family: var(--font-body);
-    text-align: center;
+/* GENERAL MODERN RESET */
+body.modern-body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* BACKGROUND EFFECTS */
-.cyber-scanline {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.5;
-}
-
-/* ========== ARCADE LOGIN ========== */
-.arcade-login-body {
+/* ========== MODERN LOGIN ========== */
+.modern-login-bg {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
 }
 
-.login-wrapper {
-    position: relative;
-    padding: 3px;
-    background: linear-gradient(45deg, var(--neon-magenta), var(--neon-cyan));
-    border-radius: 15px;
-    animation: border-glow 3s infinite alternate;
-}
-@keyframes border-glow {
-    0% { box-shadow: 0 0 10px var(--neon-cyan); }
-    100% { box-shadow: 0 0 40px var(--neon-magenta); }
-}
-
-.login-box {
-    background: rgba(10, 10, 15, 0.95);
+.modern-login-container {
+    background: var(--card-bg);
     padding: 40px;
-    border-radius: 12px;
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 16px;
+    width: 380px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
 }
 
-.glitch-text {
-    font-family: var(--font-head);
-    font-size: 2.5rem;
-    color: var(--neon-cyan);
-    margin: 0 0 5px;
-    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
-    letter-spacing: 2px;
-}
-.subtitle {
-    font-size: 0.9rem;
-    color: #666;
+.login-header {
+    text-align: center;
     margin-bottom: 30px;
 }
+.modern-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--text-main);
+}
+.modern-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+}
 
-.cyber-form {
-    width: 100%;
+.modern-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.input-group {
+.modern-input-group {
     display: flex;
     flex-direction: column;
     text-align: left;
 }
-.input-group label {
-    font-family: var(--font-head);
-    font-size: 0.8rem;
-    color: var(--neon-pink);
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+.modern-input-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text-main);
 }
-.input-group input {
-    background: rgba(255, 255, 255, 0.05);
-    border: none;
-    border-bottom: 2px solid #333;
-    padding: 12px;
-    color: #fff;
-    font-family: var(--font-body);
-    font-size: 1rem;
+.modern-input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
     outline: none;
-    transition: all 0.3s;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fdfdfd;
+    box-sizing: border-box;
 }
-.input-group input:focus {
-    border-bottom-color: var(--neon-cyan);
-    background: rgba(0, 243, 255, 0.05);
+.modern-input-group input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
-.cyber-btn {
-    background: transparent;
-    color: var(--neon-cyan);
-    border: 1px solid var(--neon-cyan);
-    padding: 15px;
-    font-family: var(--font-head);
+.primary-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
     font-size: 1rem;
-    letter-spacing: 2px;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
     margin-top: 10px;
-    transition: 0.3s;
-    border-radius: 4px;
 }
-.cyber-btn:hover {
-    background: var(--neon-cyan);
-    color: #000;
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+.primary-btn:hover {
+    background: var(--primary-hover);
+}
+.primary-btn:active {
+    transform: scale(0.98);
 }
 
-.login-footer {
+.modern-login-footer {
+    text-align: center;
     margin-top: 20px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
 }
-.login-footer a {
-    color: #555;
+.modern-login-footer a {
+    color: var(--primary-blue);
     text-decoration: none;
-    transition: 0.3s;
 }
-.login-footer a:hover { color: var(--neon-magenta); }
+.modern-login-footer a:hover { text-decoration: underline; }
 
-/* ========== ARCADE HUB ========== */
-.arcade-hub-body {
-    background: var(--bg-dark);
-    padding: 40px 20px;
-}
-.hub-header {
-    margin-bottom: 50px;
-}
-.hub-header .glitch-text { font-size: 3rem; }
 
-.games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
+/* ========== MODERN LIBRARY GRID ========== */
+.modern-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+.nav-logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.nav-logout {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.nav-logout:hover { color: var(--text-main); }
+
+.modern-library {
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 50px 20px;
+}
+.library-header {
+    margin-bottom: 40px;
+}
+.library-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+.library-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
 }
 
-.game-card {
-    background: rgba(25, 25, 30, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+.modern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.modern-card {
+    background: var(--card-bg);
+    border-radius: 16px;
     overflow: hidden;
     text-decoration: none;
+    color: var(--text-main);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
 }
-.game-card:hover {
-    transform: translateY(-15px);
+.modern-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
-.game-card[data-neon="magenta"]:hover { box-shadow: 0 15px 30px rgba(176, 0, 255, 0.3); border-color: var(--neon-magenta); }
-.game-card[data-neon="cyan"]:hover { box-shadow: 0 15px 30px rgba(0, 243, 255, 0.3); border-color: var(--neon-cyan); }
-.game-card[data-neon="green"]:hover { box-shadow: 0 15px 30px rgba(0, 255, 102, 0.3); border-color: var(--neon-green); }
-.game-card[data-neon="pink"]:hover { box-shadow: 0 15px 30px rgba(255, 0, 127, 0.3); border-color: var(--neon-pink); }
-.game-card[data-neon="orange"]:hover { box-shadow: 0 15px 30px rgba(255, 85, 0, 0.3); border-color: var(--neon-orange); }
-.game-card[data-neon="yellow"]:hover { box-shadow: 0 15px 30px rgba(255, 255, 0, 0.3); border-color: var(--neon-yellow); }
 
-.card-image {
-    height: 180px;
+.m-card-image {
+    height: 160px;
     background-size: cover;
     background-position: center;
-    background-color: #111;
-    filter: grayscale(1);
-    transition: 0.5s;
-    position: relative;
-    border-bottom: 2px solid rgba(255,255,255,0.05);
 }
-.game-card:hover .card-image { filter: grayscale(0); }
+.bg-gradient-blue { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+.bg-gradient-green { background: linear-gradient(135deg, #10b981, #34d399); }
+.bg-gradient-purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+.bg-gradient-orange { background: linear-gradient(135deg, #f97316, #fb923c); }
+.bg-gradient-red { background: linear-gradient(135deg, #ef4444, #f87171); }
 
-/* Fallback logical backgrounds */
-.logic-bg { background: linear-gradient(45deg, #111, var(--neon-cyan)); }
-.snake-bg { background: linear-gradient(45deg, #111, var(--neon-green)); }
-.memory-bg { background: repeating-radial-gradient(circle at center, #111, var(--neon-pink) 20px); }
-.pass-bg { background: linear-gradient(-45deg, #000, var(--neon-orange)); }
-.dodge-bg { background: radial-gradient(ellipse at top, #111, var(--neon-yellow)); }
-
-.card-content {
+.m-card-content {
     padding: 20px;
-    text-align: left;
 }
-.game-id {
-    font-family: var(--font-head);
-    font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 5px;
+.m-card-content h3 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
-.card-content h3 {
+.m-card-content p {
     margin: 0;
-    font-family: var(--font-head);
-    font-size: 1.5rem;
-    color: #fff;
-    letter-spacing: 1px;
-}
-.game-card:hover .card-content h3 {
-    color: var(--neon-cyan);
-}
-
-.hub-actions {
-    margin-top: 60px;
-}
-.exit-btn {
-    border-color: #555; color: #555;
-}
-.exit-btn:hover {
-    background: #ff003c; border-color: #ff003c; color: #fff; box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
 }
 
 /* Estilos del juego */
