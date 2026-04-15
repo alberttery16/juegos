@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceder - Juegos</title>
-    <!-- Modern clean font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Juegos - Acceder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Estilos.css">
 </head>
-<body class="modern-body modern-login-bg">
-    <div class="modern-login-container">
-        <div class="login-header">
-            <h1 class="modern-title">Bienvenido</h1>
-            <p class="modern-subtitle">Inicia sesión en tu cuenta para acceder a la biblioteca de juegos.</p>
+<body class="premium-body premium-login">
+    <div class="premium-bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <div class="premium-login-box">
+        <div class="login-brand">
+            <h1>PLAY<span>HUB</span></h1>
+            <p>Accede a tu biblioteca virtual</p>
         </div>
 
-        <form action="paginaPrincipal.html" method="get" class="modern-form">
-            <div class="modern-input-group">
-                <label for="nombre">Nombre de usuario</label>
-                <input type="text" id="nombre" name="nombre" placeholder="johndoe" required autocomplete="off">
+        <form action="paginaPrincipal.html" method="get" class="premium-form">
+            <div class="premium-input">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre de usuario" required autocomplete="off">
             </div>
 
-            <div class="modern-input-group">
-                <label for="correo">Correo electrónico</label>
-                <input type="email" id="correo" name="correo" placeholder="john@example.com" required autocomplete="off">
+            <div class="premium-input">
+                <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required autocomplete="off">
             </div>
 
-            <div class="modern-input-group">
-                <label for="contraseña">Contraseña</label>
-                <input type="password" id="contraseña" name="contraseña" placeholder="••••••••" required autocomplete="off">
+            <div class="premium-input">
+                <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required autocomplete="off">
             </div>
 
-            <button type="submit" class="modern-btn primary-btn">Iniciar Sesión</button>
+            <button type="submit" class="btn-epic">
+                <span>INICIAR SESIÓN</span>
+            </button>
             
-            <footer class="modern-login-footer">
-                <p>Al continuar, aceptas nuestra <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>.</p>
-            </footer>
+            <div class="login-footer">
+                <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacidad y Términos</a>
+            </div>
         </form>
     </div>
 </body>
